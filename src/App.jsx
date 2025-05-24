@@ -37,54 +37,72 @@ function App() {
   }
 
   function checkValidity(){
-    let warning = false
+    let warning = true
     if(inputDay ===""){
       setWarningDay("This field is required")
       setDayLabel("red-label")
       setWarningInput("warning-input")
+      warning = false
       
-    }else if(inputDay >31 && inputDay<=0){
+    }else if(inputDay >31){
       setWarningDay("Must be valid date")
       setDayLabel("red-label")
       setWarningInput("warning-input")
-      
+      warning = false
+    }else if(inputDay<=0){
+      setWarningDay("This field is required")
+      setDayLabel("red-label")
+      setWarningInput("warning-input")
+      warning = false
+      console.log("inputDay",warning)
     }else {
       setWarningDay("")
       setDayLabel("")
       setWarningInput("")
-      warning = true
-
     }
 
-    if (inputMonth===""){
+    if (inputMonth==="" ){
       setWarningMonth("This field is required")
       setMonthLabel("red-label")
       setWarningInput("warning-input")
+      warning = false
     }else if (inputMonth>12){
       setWarningMonth("Must be valid date")
       setMonthLabel("red-label")
       setWarningInput("warning-input")
+      warning = false
+    }else if(inputMonth<=0){
+      setWarningMonth("This field is required")
+      setMonthLabel("red-label")
+      setWarningInput("warning-input")
+      warning = false
     }else {
       setWarningMonth("")
       setMonthLabel("")
       setWarningInput("")
-      warning = true
     }
 
     if(inputYear === ""){
       setWarningYear("This field is required")
       setLabelYear("red-label")
       setWarningInput("warning-input")
-    }else if (inputYear > dateNow.getFullYear()){
+      warning = false
+    }else if (inputYear > dateNow.getFullYear() ){
       setWarningYear("Must be valid date")
       setLabelYear("red-label")
       setWarningInput("warning-input")
-    }else{
+      warning = false
+    }else if(inputYear<=100){
+      setWarningYear("The year should be above 100")
+      setLabelYear("red-label")
+      setWarningInput("warning-input")
+      warning = false
+    }else{  
       setWarningYear("")
       setLabelYear("")
       setWarningInput("")
-      warning = true
     }
+    console.log(warning)
     return warning
   }
 
@@ -137,7 +155,7 @@ function App() {
       setYear(calcAge.years)
       setMonth(calcAge.months)
       setDay(calcAge.days)
-    } 
+    }
     
   }
 
